@@ -1,20 +1,15 @@
-// Creando el objeto Literal de natalia
 
-const natalia = {
-    name: "Nath",
-    age: 21,
-    cursosAprobados: [
-        "Curso Definitivo de HTML y CSS",
-        "Curso Practico de HTML y CSS"
-    ],
 
-    // Crear metodos
-    aprobarCurso(nuevoCurso){
-        this.cursosAprobados.push(nuevoCurso)
-    }
+// Creacion de un prototipo Prototipo Student
 
+function Student(name, age, cursosAprobados){
+    this.name = name;
+    this.age = age;
+    this.cursosAprobados = cursosAprobados;
 }
 
-natalia.cursosAprobados.push("Curso de Responsive Design")
+Student.prototype.aprobarCurso = function(nuevoCurso){
+    this.cursosAprobados.push(nuevoCurso)
+}
 
-
+const alexis = new Student("Alexis", 22, ["Curso de Kotlin", "Curso de JAVA"])
