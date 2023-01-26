@@ -57,6 +57,72 @@ const jesus = new Student2({
 
 
 
+
+
+class Teachers {
+    constructor({
+        id,
+        name,
+        courses = []
+    })
+    {
+        this.id = id;
+        this.name = name;
+        this.courses = courses
+    }
+}
+
+
+class BodyComments{
+    constructor({
+        text,
+        image = undefined,
+        code = undefined,
+    })
+    {
+        this.text = text;
+        this.image = image;
+        this.code = code;
+    }
+}
+
+
+class Comments {
+    constructor({
+        id,
+        username,
+        likes = 1,
+        date,
+        body
+    })
+    {
+        this.id = id;
+        this.username = username;
+        this.likes = likes;
+        this.date = date;
+        this.body = body;
+    }
+}
+
+
+class Lessons {
+    constructor({
+        id,
+        nameLesson,
+        duration,
+        links,
+        comments = []
+    })
+    {
+        this.id = id;
+        this.nameLesson = nameLesson;
+        this.duration = duration;
+        this.links = links;
+        this.comments = comments;
+    }
+}
+
+
 class Course {
     constructor({
         id,
@@ -71,6 +137,7 @@ class Course {
         this.lessons = lessons;
     }
 }
+
 
 class LearningPaths {
     constructor({
@@ -110,9 +177,66 @@ class LearningPaths {
 
 }
 
-const escuelaWeb = new LearningPaths();
-const escuelaData = new LearningPaths();
-const escuelaVgs = new LearningPaths();
+
+
+const introProgBasica = new Lessons({
+    nameLesson: "Introduccion al curso"
+})
+
+const claseImportanteParaTodos = new Lessons({
+    id: "l00001",
+    duration: 180,
+    nameLesson: "Clase Importante para todos"
+})
+
+const teacherFreddyVega = new Teachers({
+    name: "Freddy Vega"
+})
+
+
+
+const cursoProgBasica = new Course({
+    id: 00001,
+    nameCourse: "Curso gratis de Programacion Basica",
+    teacher: teacherFreddyVega,
+    lessons: [
+        introProgBasica,
+        claseImportanteParaTodos
+    ]
+})
+
+const cursoDefinitivoHTMLCSS= new Course({
+    id:00010,
+    nameCourse: "Curso Definitivo de HTML y CSS",
+    teacher: "Diego DeGranda",
+    lessons: [
+        claseImportanteParaTodos
+    ]
+})
+
+const cursoPracticoHTMLCSS = new Course({
+    id: 00011,
+    nameCourse: "Curso Practico HTML y CSS",
+    teacher: "Diego DeGranda",
+    lessons: [
+        claseImportanteParaTodos
+    ]
+})
+
+const escuelaWeb = new LearningPaths({
+    name: "Escuela de Desarrollo Web",
+    courses: [
+        cursoProgBasica,
+        cursoDefinitivoHTMLCSS,
+        cursoPracticoHTMLCSS
+    ]
+});
+const escuelaData = new LearningPaths({
+    name: "Escuela de Data Science"
+});
+const escuelaVgs = new LearningPaths({
+    name: "Escuela de Unreal Engine"
+});
 
 
 class Estudiante {
@@ -144,14 +268,23 @@ class Estudiante {
 
 const martha = new Estudiante({
     name: "Martha",
+    age: 23,
     username: "majisa",
     email: "martha_iloveyou@gmail.com",
-    intagram: "__majisa"
+    instagram: "__majisa",
+    learningPaths: [
+        escuelaWeb,
+        escuelaData
+    ]
 })
 
 const fernanda = new Estudiante({
     name: "Fernanda",
     email: "fernanda_mylove@gmail.com",
     username: "fernandamendez",
-    facebook: "fernanda_mendez"
+    facebook: "fernanda_mendez",
+    learningPaths: [
+        escuelaData,
+        escuelaVgs
+    ]
 })
