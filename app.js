@@ -53,3 +53,105 @@ const jesus = new Student2({
     age: 22,
     // cursosAprobados: ["Curso de ReactJS", "Curso de NextJS"]
 })
+
+
+
+
+class Course {
+    constructor({
+        id,
+        nameCourse,
+        teacher,
+        lessons = []
+    })
+    {
+        this.id = id;
+        this.nameCourse = nameCourse;
+        this.teacher = teacher;
+        this.lessons = lessons;
+    }
+}
+
+class LearningPaths {
+    constructor({
+        id,
+        name,
+        courses = []
+    })
+    {
+        this.id = id;
+        this.name = name;
+        this.courses = courses;
+    }
+
+    addCourse(course){
+        this.courses.push(course)
+    }
+
+    replaceCourse(oldCourse, newCourse){
+        const oldCourseIndex = this.courses.findIndex(course => course.id === oldCourse.id);
+
+        if(oldCourseIndex !== -1){
+            this.courses[oldCourseIndex] = newCourse
+        }
+
+        return this.courses
+    }
+
+
+    deleteCourse(oldCourse){
+        const courseIndex = this.courses.findIndex(course => course.id === oldCourse.id)
+
+        this.courses.splice(courseIndex, 1);
+
+        return this.courses;
+    }
+
+
+}
+
+const escuelaWeb = new LearningPaths();
+const escuelaData = new LearningPaths();
+const escuelaVgs = new LearningPaths();
+
+
+class Estudiante {
+    constructor({
+        name,
+        email,
+        username,
+        age,
+        twitter = undefined,
+        facebook = undefined,
+        instagram = undefined,
+        approvedCourses = [],
+        learningPaths = []
+    })
+    {
+        this.email = email;
+        this.name = name;
+        this.username = username;
+        this.age = age;
+        this.socialMedia = {
+            twitter,
+            instagram,
+            facebook
+        }
+        this.approvedCourses = approvedCourses;
+        this.learningPaths = learningPaths;
+    }
+}
+
+const martha = new Estudiante({
+    name: "Martha",
+    username: "majisa",
+    email: "martha_iloveyou@gmail.com",
+    intagram: "__majisa"
+})
+
+const fernanda = new Estudiante({
+    name: "Fernanda",
+    email: "fernanda_mylove@gmail.com",
+    username: "fernandamendez",
+    facebook: "fernanda_mendez"
+})
