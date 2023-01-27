@@ -79,11 +79,26 @@ class Course {
     })
     {
         this.id = id;
-        this.nameCourse = nameCourse;
+        this._nameCourse = nameCourse;
         this.teacher = teacher;
         this.lessons = lessons;
         this.comments = comments;
     }
+
+    // Creando el primer getter
+    get name(){
+        return this._nameCourse
+    }
+
+    set name(newName){
+        if(newName.length > 6){
+            this._nameCourse = newName;
+        }else{
+            console.error("Nombre invalido!!")
+        }
+    }
+
+
 }
 
 
@@ -149,6 +164,8 @@ const cursoProgBasica = new Course({
         claseImportanteParaTodos
     ]
 })
+
+// cursoProgBasica.name = "Curso completo de Programacion Basica Gratis"
 
 const cursoDefinitivoHTMLCSS= new Course({
     id:00010,
