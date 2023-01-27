@@ -55,6 +55,61 @@ const jesus = new Student2({
 })
 
 
+function videoPlay(id){
+    const urlSecreta = "https://urlsupersecreta.com/" + id;
+    console.log(`Se esta reproduciendo el video de la url super secreta: ${urlSecreta}`)
+}
+
+function videoStop(id){
+    const urlSecreta = "https://urlsupersecreta.com/" + id;
+    console.log(`Se pauso el video de la url super secreta: ${urlSecreta}`)
+}
+
+
+class PlatziClass {
+    constructor({
+        name,
+        videoID
+    }){
+        this.name = name;
+        this.videoID = videoID;
+    }
+
+    reproducir(){
+        videoPlay(this.videoID)
+    }
+
+    pausar(){
+        videoStop(this.videoID)
+    }
+}
+
+
+export class Reto {
+    constructor({
+      name,
+      classes = [],
+    }) {
+      this._name = name;
+      this.classes = classes;
+    }
+  
+    get name() {
+      return this._name;
+    }
+  
+    set name(nuevoNombrecito) {
+      if (typeof nuevoNombrecito !== "string") {
+        console.log("Entre")
+        return this._name;
+      } else {
+        this._name = nuevoNombrecito.split(" ").map(word => word[0].toUpperCase() + word.slice(1)).join(" ")
+
+      }
+    }
+  }
+
+
 class Lessons{
     constructor({
         id,
@@ -156,7 +211,7 @@ const claseImportanteParaTodos = new Lessons({
 
 
 const cursoProgBasica = new Course({
-    id: 00001,
+    id: "00001",
     nameCourse: "Curso gratis de Programacion Basica",
     teacher: "Freddy Vega",
     lessons: [
@@ -168,7 +223,7 @@ const cursoProgBasica = new Course({
 // cursoProgBasica.name = "Curso completo de Programacion Basica Gratis"
 
 const cursoDefinitivoHTMLCSS= new Course({
-    id:00010,
+    id:"00010",
     nameCourse: "Curso Definitivo de HTML y CSS",
     teacher: "Diego DeGranda",
     lessons: [
@@ -177,7 +232,7 @@ const cursoDefinitivoHTMLCSS= new Course({
 })
 
 const cursoPracticoHTMLCSS = new Course({
-    id: 00011,
+    id: "00011",
     nameCourse: "Curso Practico HTML y CSS",
     teacher: "Diego DeGranda",
     lessons: [
