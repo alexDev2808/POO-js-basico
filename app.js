@@ -55,70 +55,16 @@ const jesus = new Student2({
 })
 
 
-
-
-
-
-class Teachers {
-    constructor({
-        id,
-        name,
-        courses = []
-    })
-    {
-        this.id = id;
-        this.name = name;
-        this.courses = courses
-    }
-}
-
-
-class BodyComments{
-    constructor({
-        text,
-        image = undefined,
-        code = undefined,
-    })
-    {
-        this.text = text;
-        this.image = image;
-        this.code = code;
-    }
-}
-
-
-class Comments {
-    constructor({
-        id,
-        username,
-        likes = 1,
-        date,
-        body
-    })
-    {
-        this.id = id;
-        this.username = username;
-        this.likes = likes;
-        this.date = date;
-        this.body = body;
-    }
-}
-
-
-class Lessons {
+class Lessons{
     constructor({
         id,
         nameLesson,
-        duration,
-        links,
-        comments = []
+        duration
     })
     {
         this.id = id;
         this.nameLesson = nameLesson;
         this.duration = duration;
-        this.links = links;
-        this.comments = comments;
     }
 }
 
@@ -128,13 +74,15 @@ class Course {
         id,
         nameCourse,
         teacher,
-        lessons = []
+        lessons = [],
+        comments = []
     })
     {
         this.id = id;
         this.nameCourse = nameCourse;
         this.teacher = teacher;
         this.lessons = lessons;
+        this.comments = comments;
     }
 }
 
@@ -189,16 +137,13 @@ const claseImportanteParaTodos = new Lessons({
     nameLesson: "Clase Importante para todos"
 })
 
-const teacherFreddyVega = new Teachers({
-    name: "Freddy Vega"
-})
 
 
 
 const cursoProgBasica = new Course({
     id: 00001,
     nameCourse: "Curso gratis de Programacion Basica",
-    teacher: teacherFreddyVega,
+    teacher: "Freddy Vega",
     lessons: [
         introProgBasica,
         claseImportanteParaTodos
