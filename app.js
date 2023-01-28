@@ -54,6 +54,26 @@ const jesus = new Student2({
     // cursosAprobados: ["Curso de ReactJS", "Curso de NextJS"]
 })
 
+class Comment {
+    constructor({
+        content,
+        studentName,
+        studentRole = "estudiante"
+    })
+    {
+        this.content = content;
+        this.studentName = studentName;
+        this.studentRole = studentRole;
+        this.likes = 1;
+    }
+
+    publicar(){
+        console.log(`${this.studentName} (${this.studentRole})`)
+        console.log(`${this.likes} likes`);
+        console.log(this.content)
+    }
+}
+
 
 function videoPlay(id){
     const urlSecreta = "https://urlsupersecreta.com/" + id;
@@ -287,6 +307,16 @@ class Estudiante {
         this.approvedCourses = approvedCourses;
         this.learningPaths = learningPaths;
     }
+
+
+    publicarComentario(commentContent){
+        const comment = new Comment({
+            content: commentContent,
+            studentName: this.name
+        });
+
+        comment.publicar();
+    }
 }
 
 class FreeStudent extends Estudiante{
@@ -333,7 +363,29 @@ class ExpertStudent extends Estudiante{
     }
 }
 
-const martha = new ExpertStudent({
+class TeacherStudent extends Estudiante{
+    // Recibimos todas nuestras propiedades
+    constructor(props){
+        // Nos permite llamar al constructor de clase madre 
+        super(props)
+    }
+
+    approveCourse(newCourse){
+        this.approvedCourses.push(newCourse)
+    }
+
+    publicarComentario(commentContent){
+        const comment = new Comment({
+            content: commentContent,
+            studentName: this.name,
+            studentRole: "profesor"
+        });
+
+        comment.publicar();
+    }
+}
+
+const martha = new TeacherStudent({
     name: "Martha",
     age: 23,
     username: "majisa",
