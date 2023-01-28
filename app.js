@@ -85,7 +85,7 @@ class PlatziClass {
 }
 
 
-export class Reto {
+class Reto {
     constructor({
       name,
       classes = [],
@@ -130,7 +130,9 @@ class Course {
         nameCourse,
         teacher,
         lessons = [],
-        comments = []
+        comments = [],
+        isFree = false,
+        lang = 'spanish'
     })
     {
         this.id = id;
@@ -138,6 +140,8 @@ class Course {
         this.teacher = teacher;
         this.lessons = lessons;
         this.comments = comments;
+        this.isFree = isFree;
+        this.lang = lang;
     }
 
     // Creando el primer getter
@@ -217,7 +221,8 @@ const cursoProgBasica = new Course({
     lessons: [
         introProgBasica,
         claseImportanteParaTodos
-    ]
+    ],
+    isFree: true
 })
 
 // cursoProgBasica.name = "Curso completo de Programacion Basica Gratis"
@@ -237,7 +242,8 @@ const cursoPracticoHTMLCSS = new Course({
     teacher: "Diego DeGranda",
     lessons: [
         claseImportanteParaTodos
-    ]
+    ],
+    lang: 'english'
 })
 
 const escuelaWeb = new LearningPaths({
@@ -283,7 +289,51 @@ class Estudiante {
     }
 }
 
-const martha = new Estudiante({
+class FreeStudent extends Estudiante{
+    // Recibimos todas nuestras propiedades
+    constructor(props){
+        // Nos permite llamar al constructor de clase madre 
+        super(props)
+    }
+
+    approveCourse(newCourse){
+        if(newCourse.isFree){
+            this.approvedCourses.push(newCourse)
+        }else{
+            console.warn(`Lo siento ${this.name} solo puedes tomar cursos abiertos.`)
+        }
+    }
+}
+
+class BasicStudent extends Estudiante{
+    // Recibimos todas nuestras propiedades
+    constructor(props){
+        // Nos permite llamar al constructor de clase madre 
+        super(props)
+    }
+
+    approveCourse(newCourse){
+        if(newCourse.lang !== "english"){
+            this.approvedCourses.push(newCourse)
+        }else{
+            console.warn(`Lo siento ${this.name} solo puedes tomar cursos en ingles.`)
+        }
+    }
+}
+
+class ExpertStudent extends Estudiante{
+    // Recibimos todas nuestras propiedades
+    constructor(props){
+        // Nos permite llamar al constructor de clase madre 
+        super(props)
+    }
+
+    approveCourse(newCourse){
+        this.approvedCourses.push(newCourse)
+    }
+}
+
+const martha = new ExpertStudent({
     name: "Martha",
     age: 23,
     username: "majisa",
@@ -295,11 +345,22 @@ const martha = new Estudiante({
     ]
 })
 
-const fernanda = new Estudiante({
+const fernanda = new BasicStudent({
     name: "Fernanda",
     email: "fernanda_mylove@gmail.com",
     username: "fernandamendez",
     facebook: "fernanda_mendez",
+    learningPaths: [
+        escuelaData,
+        escuelaVgs
+    ]
+})
+
+const mary = new FreeStudent({
+    name: "Maribel",
+    email: "maripotts@gmail.com",
+    username: "maripotts",
+    facebook: "maripotts",
     learningPaths: [
         escuelaData,
         escuelaVgs
